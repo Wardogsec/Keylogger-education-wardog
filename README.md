@@ -21,7 +21,7 @@ The script logs input from designated fields **to the browser console only**, an
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/educational-keylogger-demo.git
+   git clone https://github.com/Wardogsec/Keylogger-education-wardog.git
    cd educational-keylogger-demo
 Open the HTML file in a browser:
 
