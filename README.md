@@ -1,64 +1,81 @@
 # 🧠 Keylogger Simulation (Educational)
 
 > ⚠️ This repository contains a **harmless keylogger simulation** intended for **security education, browser behavior analysis, and defense training**.  
-> It must **not** be used on systems, websites, or users without explicit permission.
+> ❌ It must **not** be used on systems, websites, or users without **explicit permission**.
 
 ---
 
 ## 📝 Overview
 
-This HTML file demonstrates how malicious JavaScript could be injected into a webpage to **capture keystrokes in real time**.  
-The demo is designed to help:
-- 🧑‍💻 Developers recognize risky patterns in client-side code.
-- 🧠 Security teams understand how attackers might log form inputs.
-- 🛡️ Blue teams test browser protections and security headers (e.g., CSP).
+This project demonstrates how malicious JavaScript can be embedded in a webpage to **capture keystrokes in real time**.  
+It is intended **strictly for educational and defensive purposes**, helping:
 
-The script logs input from designated fields **to the browser console only**, and does not transmit data externally.
+- 🧑‍💻 **Developers** recognize risky client-side code patterns.  
+- 🧠 **Security teams** understand attacker behavior.  
+- 🛡️ **Blue teams** test browser protections, Content Security Policy (CSP), and event monitoring.
+
+👉 The script logs keystrokes to the **browser console** and saves them to `localStorage`.  
+A sample `fetch` request shows how attackers might exfiltrate data, but this is configured to use `http://127.0.0.1:5501/receive` for **local testing only**.
 
 ---
 
 ## ⚡ Quick Start
 
-1. Clone the repository:
+1. **Clone this repository**
    ```bash
    git clone https://github.com/Wardogsec/Keylogger-education-wardog.git
-   cd educational-keylogger-demo
-Open the HTML file in a browser:
+   cd Keylogger-education-wardog
+   ```
 
-bash
-Copy code
-firefox educational_keylogger_demo.html
-or
+2. **Open the HTML file in your browser**
+   ```bash
+   firefox educational_keylogger_demo.html
+   ```
+   or
+   ```bash
+   google-chrome educational_keylogger_demo.html
+   ```
 
-bash
-Copy code
-google-chrome educational_keylogger_demo.html
-Open the browser’s Developer Console (F12) to observe keystroke events in real time.
+3. **Open Developer Tools** (F12) to view real-time keystroke logs in the browser console.
 
-🧱 File Structure
-bash
-Copy code
-educational-keylogger-demo/
-├── educational_keylogger_demo.html   # Standalone HTML demo
-└── README.md                         # Documentation and usage notes
-🛡️ Defensive Takeaways
-Content Security Policy (CSP) can prevent unauthorized script injection.
+---
 
-Validate and sanitize user input to reduce injection opportunities.
+## 📁 File Structure
 
-Monitor for unusual JavaScript events in critical pages (e.g., login forms).
+```bash
+Keylogger-education-wardog/
+├── educational_keylogger_demo.html   # Standalone HTML keylogger demo (educational)
+└── README.md                         # Documentation and legal notes
+```
 
-Use browser extensions or developer tools to inspect unexpected scripts.
+💡 **File Format Note:**  
+This demo is saved as a single `.html` file (not `.js`) to mimic how a malicious script might be injected directly into a webpage. This makes it easy to run locally for demonstration purposes.
 
-⚖️ Legal Disclaimer
-This code is for authorized security training and research only.
-Deploying or using keyloggers without proper consent is illegal in many jurisdictions. The author(s) and contributors are not responsible for any misuse.
+---
 
-📚 Resources
-OWASP Keylogger Article
+## 🛡️ Defensive Takeaways
 
-Content Security Policy (CSP) Guide
+- **Content Security Policy (CSP)** — Strong CSP headers can block unauthorized scripts.  
+- **Input Validation** — Validate and sanitize both client-side and server-side inputs.  
+- **Script Monitoring** — Watch for unexpected JavaScript events on critical pages like logins.  
+- **Browser Tools** — Use DevTools and security extensions to inspect loaded scripts.
 
-Browser DevTools Guide
+---
 
-Made for educational awareness 🧠🛡️
+## ⚖️ Legal Disclaimer
+
+This project is for **authorized security training and research only**.  
+Using or deploying keyloggers without proper consent is **illegal** in many jurisdictions.  
+The authors and contributors assume **no liability for misuse**.
+
+---
+
+## 📚 Resources
+
+- [OWASP Keylogger Article](https://owasp.org)  
+- [Content Security Policy (CSP) Guide](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)  
+- [Chrome DevTools Guide](https://developer.chrome.com/docs/devtools/)  
+
+---
+
+🧠 **Made for educational awareness** 🛡️
